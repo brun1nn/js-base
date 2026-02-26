@@ -29,15 +29,19 @@
     const div = document.querySelector('#myDiv');
 
     // Variável para controlar a posição da div
+    let position = 0;
 
     // 1ª Digitação (Aqui)
 
     // Adiciona um evento de clique ao botão
- 
+    button.addEventListener('click' , () => {
       // Aumenta a posição em 50 pixels
+      position += 50;
+      // Move a div para a nova posição
+      div.style.left = `${position}px`;
+    })
       
 
-      // Move a div para a nova posição
 
   </script>
 </body>
