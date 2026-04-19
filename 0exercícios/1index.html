@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumo de API</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+            margin: 0;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 320px;
+            width: 100%;
+        }
+
+        button {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            transition: background 0.3s;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background: #4f46e5;
+        }
+
+        #resultado {
+            font-size: 18px;
+            font-weight: 500;
+            color: #374151;
+            min-height: 24px;
+        }
+
+        .erro {
+            color: #ef4444;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h2>Perfil do Usuário 🌐</h2>
+        <button id="btn-buscar">Buscar Dados</button>
+        <div id="resultado">Aguardando ação...</div>
+    </div>
+    <script>
+        const botao = document.querySelector("#btn-buscar");
+        const resultado = document.querySelector('#resultado');
+
+        async function buscarUsuario() {
+            try {
+                const busca = await fetch('https://jsonplaceholder.typicode.com/users/1');
+                const dados = await busca.json();
+
+                resultado.textContent = dados.name;
+            } catch (erro) {
+                console.error('Erro ao buscar dados', erro);
+                resultado.textContent = 'Erro ao carregar usuário';
+            }
+        }
+
+        botao.addEventListener('click', buscarUsuario);
+    </script>
+</body>
+
+</html>
